@@ -51,23 +51,23 @@ $(function () {
 				"navigation": false,
 				afterLoad: function(achorLink, index) {
 					if (index == '1') {
-						$('.section1').find('p').fadeOut(100);
+						$('.section1').find('p').fadeOut(1);
 						$('.section1').find('p').fadeIn(2000);
 					}
 					if (index == '2') {
-						$('.section2').find('p').fadeOut(100);
+						$('.section2').find('p').fadeOut(1);
 						$('.section2').find('p').fadeIn(2000);
 					}
 					if (index == '3') {
-						$('.section3').find('p').fadeOut(100);
+						$('.section3').find('p').fadeOut(1);
 						$('.section3').find('p').fadeIn(2000);
 					}
 					if (index == '4') {
-						$('.section4').find('p').fadeOut(100);
+						$('.section4').find('p').fadeOut(1);
 						$('.section4').find('p').fadeIn(2000);
 					}
 					if (index == '5') {
-						$('.section5').find('p').fadeOut(100);
+						$('.section5').find('p').fadeOut(1);
 						$('.section5').find('p').fadeIn(2000);
 					}
 				},
