@@ -43,6 +43,7 @@ var silder = document.getElementById('slider');
 })*/
 
 $(function () {
+	$('p').fadeOut();
 	$("#fullpage").fullpage(
 			{
 				continuousVertical: false,
