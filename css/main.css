@@ -105,10 +105,10 @@ header .switchBtn {
 	margin: 0.041667rem;
 }
 .switchBtn .btn-right {
-	right: 0;
+	right: 0.020833rem;
 }
 .switchBtn .btn-left {
-	left: 0;
+	left: 0.020833rem;
 } 
 /* container */
 /* container >>>> silder */
@@ -274,6 +274,9 @@ header .switchBtn {
 	border-radius: 0.104167rem;
 	background-color: #37474f;
 	position: relative;
+	color: #fff;
+	font-size: 0.291667rem;
+	text-align: center;
 }
 
 /* run */
@@ -343,64 +346,71 @@ footer p {
 
 .one {
 	position: absolute;
-	width: 65px;
-	height: 65px;
-	background-image: url('../imgs/bubble.png');
-	background-position: 0px 0px;
+	width: 1.354167rem;
+	height: 1.354167rem;
 	left: 0.625rem;
 	top: 1.770833rem;
+	background-color: #387da0;
+	border-radius: 50%;
+	line-height: 1.354167rem;
 }
 .two {
 	position: absolute;
-	width: 64px;
-	height: 64px;
-	background-image: url('../imgs/bubble.png');
-	background-position: -70px 0px;
+	width: 1.333333rem;
+	height: 1.333333rem;
 	left: 2.916667rem;
 	top: 1.166667rem;
+	background-color: #3c8e68;
+	border-radius: 50%;
+	line-height: 1.333333rem;
 }
 .three {
 	position: absolute;
 	left: 4.708333rem;
 	top: 2.166667rem;
-	width: 70px;
-	height: 70px;
-	background-image: url('../imgs/bubble.png');
-	background-position: -140px 0px;
+	width: 1.458333rem;
+	height: 1.458333rem;
+	background-color: #3f5757;
+	border-radius: 50%;
+	line-height: 1.458333rem;
 }
 .four {
 	position: absolute;
 	left: 6.354167rem;
 	top: 0.979167rem;
-	width: 48px;
-	height: 48px;
-	background-image: url('../imgs/bubble.png');
-	background-position: -210px -11px;
+	width: 1.0rem;
+	height: 1.0rem;
+	background-color: #918349;
+	border-radius: 50%;
+	line-height: 1rem;
 }
 .five {
 	position: absolute;
 	left: 5.75rem;
 	top: 3.708333rem;
-	width: 90px;
-	height: 90px;
-	background-image: url('../imgs/bubble.png');
-	background-position: -280px 0px;
+	width: 1.875rem;
+	height: 1.125rem;
+	background-color: #44654b;
+	border-radius: 50%;
+	padding-top: 0.6875rem;
 }
 .six {
 	position: absolute;
 	right: 0.5rem;
 	top: 1.979167rem;
-	width: 46px;
-	height: 46px;
-	background-image: url('../imgs/bubble.png');
-	background-position: 0px -70px;
+	width: 0.958333rem;
+	height: 0.958333rem;
+	background-color: #5f5f5f;
+	border-radius: 50%;
+	line-height: 0.958333rem;
 }
 .seven {
 	position: absolute;
 	left: 2.458333rem;
 	top: 3.708333rem;
-	width: 100px;
-	height: 100px;
-	background-image: url('../imgs/bubble.png');
-	background-position: -70px -70px;
+	width: 2.083333rem;
+	height: 2.083333rem;
+	background-color: #638c6c;
+	border-radius: 50%;
+	line-height: 2.083333rem;
 }
