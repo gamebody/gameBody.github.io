@@ -70,6 +70,7 @@ header {
 	height: 1.25rem;
 	background-color: #263238;
 }
+
 header h3 {
 	float: left;
 	margin-left: 0.833333rem;
@@ -84,6 +85,7 @@ header .pos {
 	vertical-align: middle;
 }
 header .switchBtn {
+	position: relative;
 	width: 2.083333rem;
 	height: 0.833333rem;
 	border: 0.020833rem solid rgba(0,0,0,.1);
@@ -93,15 +95,21 @@ header .switchBtn {
 	background-color: #232e33;
 }
 .switchBtn .btn {
+	position: absolute;
 	width: 0.708333rem;
 	height:0.708333rem;
 	border-radius: 50%;
 	background-color: #263238;
 	border: 0.020833rem solid rgba(0,0,0,.2);
 	box-shadow: 0.020833rem 0.041667rem 0.041667rem 0 rgba(0,0,0,.5);
-	float: right;
 	margin: 0.041667rem;
 }
+.switchBtn .btn-right {
+	right: 0;
+}
+.switchBtn .btn-left {
+	left: 0;
+} 
 /* container */
 /* container >>>> silder */
 .slider .slider-items {
@@ -131,14 +139,14 @@ header .switchBtn {
 	margin-right: 0.625rem;
 	color: #798e96;
 }
-.slider .show-tag .tag {	border-radius: 0.104167rem;
+.slider .show-tag .tag {	
+	border-radius: 0.104167rem;
 	background-color: #232e33;
 	margin-left: 0.625rem;
 	margin: 0.104167rem 0.1875rem;
 }
 .slider .show-tag .tag span {
 	display: block;
-
 	padding: 0 0.1875rem;
 	line-height: 0.625rem;
 	color: #e5e7e8;
@@ -264,8 +272,8 @@ header .switchBtn {
 	height: 6.25rem;
 	margin: 0 auto;
 	border-radius: 0.104167rem;
-	
-
+	background-color: #37474f;
+	position: relative;
 }
 
 /* run */
@@ -331,11 +339,68 @@ footer p {
 }
 
 
-/* canvas */
-#canvas {
-	width: 100%;
-	height: 6.25rem;
-	z-index: 100;
-	background-color: #37474f;
-	border-radius: 0.104167rem;
+/* bubble */
+
+.one {
+	position: absolute;
+	width: 65px;
+	height: 65px;
+	background-image: url('../imgs/bubble.png');
+	background-position: 0px 0px;
+	left: 0.625rem;
+	top: 1.770833rem;
+}
+.two {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	background-image: url('../imgs/bubble.png');
+	background-position: -70px 0px;
+	left: 2.916667rem;
+	top: 1.166667rem;
+}
+.three {
+	position: absolute;
+	left: 4.708333rem;
+	top: 2.166667rem;
+	width: 70px;
+	height: 70px;
+	background-image: url('../imgs/bubble.png');
+	background-position: -140px 0px;
+}
+.four {
+	position: absolute;
+	left: 6.354167rem;
+	top: 0.979167rem;
+	width: 48px;
+	height: 48px;
+	background-image: url('../imgs/bubble.png');
+	background-position: -210px -11px;
+}
+.five {
+	position: absolute;
+	left: 5.75rem;
+	top: 3.708333rem;
+	width: 90px;
+	height: 90px;
+	background-image: url('../imgs/bubble.png');
+	background-position: -280px 0px;
+}
+.six {
+	position: absolute;
+	right: 0.5rem;
+	top: 1.979167rem;
+	width: 46px;
+	height: 46px;
+	background-image: url('../imgs/bubble.png');
+	background-position: 0px -70px;
+}
+.seven {
+	position: absolute;
+	left: 2.458333rem;
+	top: 3.708333rem;
+	width: 100px;
+	height: 100px;
+	background-image: url('../imgs/bubble.png');
+	background-position: -70px -70px;
 }

@@ -51,36 +51,31 @@ run.addEventListener('click', function(){
 	run.style.color = '#536974';
 })
 
-
-
-/* js轮播图 */
-/*var oslider = document.getElementById('slider_img');
-var loop = {
-	index : 1,
-	init: function(ele) {
-		if (!this.ele) {
-			this.ele = null;
-		}
-		this.ele = ele;
-		this.run();
-	},
-	speed: 2000,
-	runningSpeed: 10,
-	run: function() {
-		var _this = this;
-		var timer = setInterval(function(){
-			_this.ele.style.left = -_this.index * 10 + 'rem';
-			_this.index++;
-			if (_this.index === 5) {
-				_this.ele.style.left = 0;
-				_this.index = 1;
-			}
-		}, this.speed)
+var otheme = document.getElementById('theme');
+otheme.addEventListener('click', function(){
+	var stats = this.getAttribute('class').split(' ')[1];
+	if (stats === 'btn-left') {
+		otheme.setAttribute('class', 'btn btn-right');
+		exLight();
+		othemeTitle.innerHTML = 'Light';
+	}else {
+		removeLink();
+		othemeTitle.innerHTML = 'Dark';
+		otheme.setAttribute('class', 'btn btn-left');
 	}
+	console.log(1)
+})
+var olink = document.createElement('link');
+var othemeTitle = document.getElementById('themeTitle');
+olink.rel="stylesheet";
+olink.type="text/css";
+olink.href="./css/light.css";
+function exLight () {
+	document.getElementsByTagName('head')[0].appendChild(olink);
 }
-
-loop.init(oslider);*/
-
+function removeLink() {
+	document.getElementsByTagName('head')[0].removeChild(olink);
+}
 $(function(){
 	$("#slider_img").owlCarousel({
 		items: 1,
@@ -90,6 +85,5 @@ $(function(){
 		responsive: false
 	});
 })
-
 
 
