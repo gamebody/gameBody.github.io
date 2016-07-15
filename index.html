@@ -2,90 +2,128 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="./css/css.css">
-	<link rel="stylesheet" type="text/css" href="./css/jquery.fullPage.css">
-	<title>Luv cup</title>
+	<meta http-equiv="x-ua-compatible" content="id=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	<title>Resume</title>
 </head>
-<body>	
-	<div id="forg"></div>
-	<div id="nav">
-		<p id="nav-lef">Luv cup</p>
-		<ul id="nav-rig">
-			<li class="active"><p>主页</p></li>
-			<li><p>概述</p></li>
-			<li><p>功能</p></li>
-			<li><p>设计</p></li>
-			<li><p>APP</p></li>
-		</ul>
+<body>
+	<canvas id="cas"></canvas>
+	<header>
+		<h3>Dark</h3>
+		<div class="pos">
+			<div class="switchBtn">
+				<div class="btn"></div>
+			</div>
+		</div>
+	</header>
+
+	<div class="container">
+		<div class="slider">
+			<div class="slider-items clearfix">
+				<ul class="img-container" id="slider_img">
+					<li><img src="./imgs/slider1.png" alt=""></li>
+					<li><img src="./imgs/slider2.png" alt=""></li>
+					<li><img src="./imgs/slider3.png" alt=""></li>
+					<li><img src="./imgs/slider4.png" alt=""></li>
+				</ul>
+			</div>
+		
+
+			<div class="show-tag clearfix">
+				<p class="console">console.log</p>
+				<p class="tag"><span>UI</span></p>
+				<p class="tag"><span>前端开发</span></p>
+			</div>
+		</div>
+		
+		<div class="content clearfix">
+			<div class="time-line"></div>
+			<div class="year">
+				<p>2012</p>
+			</div>
+			<div class="event-right">
+				<p class="time time-left">09.10</p>
+				<div class="small-cri"></div>
+				<div class="event-info">	
+					<div class="event-container">
+						<div class="triangle-left"></div>
+						<p>中国矿业大学徐海学院<br/>工业设计专业</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="year">
+				<p>2014</p>
+			</div>
+			<div class="event-left">
+				<p class="time time-right">12.12</p>
+				<div class="small-cri"></div>
+				<div class="event-info">	
+					<div class="event-container">
+						<div class="triangle-right"></div>
+						<p>对前端产生兴趣<br/>自学前端</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="year">
+				<p>2015</p>
+			</div>
+			<div class="event-right">
+				<p class="time time-left">07.15</p>
+				<div class="small-cri"></div>
+				<div class="event-info">	
+					<div class="event-container">
+						<div class="triangle-left"></div>
+						<p>暑假实习做LOGO<br/>以及切图</p>
+					</div>
+				</div>
+			</div>
+			<div class="event-left">
+				<p class="time time-right">12.25</p>
+				<div class="small-cri"></div>
+				<div class="event-info">	
+					<div class="event-container">
+						<div class="triangle-right"></div>
+						<p>职位：产品经理<br/>需求分析、线框图<br/>线框图</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="year">
+				<p>2016</p>
+			</div>
+			<div class="event-right">
+				<p class="time time-left">06.25</p>
+				<div class="small-cri"></div>
+				<div class="event-info">	
+					<div class="event-container">
+						<div class="triangle-left"></div>
+						<p>毕业</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="info"></div>
+		<div class="run">
+			<p>Person.js</p>
+			<div class='run-btn' id="runBtn">运行</div>
+		</div>
+		<div class="log">
+			<p id="logContent"></p>
+		</div>
 	</div>
-	<div id="nav-cri">
-		<ul id="menu">
-			<li class="active" data-menuanchor="page1" data-index='0'>
-				<a href="#page1"></a>
-			</li>
-			<li data-menuanchor="page2" data-index='1'>
-				<a href="#page2"></a>
-			</li>
-			<li data-menuanchor="page3" data-index='2'>
-				<a href="#page3"></a>
-			</li>
-			<li data-menuanchor="page4" data-index='3'>
-				<a href="#page4"></a>
-			</li>
-			<li data-menuanchor="page5" data-index='4'>
-				<a href="#page5"></a>
-			</li>
-		</ul>
-	</div>
-	<div id="fullpage">
 
-		<div class="section section1 active">
-			<div id="first-page">
-				<p class="title">Luv cup</p>
-				<p class="info">不仅仅是智能</p>
-				<img src="./imgs/first-page.png" alt="luv智能水杯">
-			</div>
-		</div>
 
-		<div class="section section2">
-			<div id="second-page">
-			<div id="icon"></div>
-				<p id="second-page-title">原来真的可以把你捧在手心</p>
-				<p>在前进的道路上，总是担心你照顾不好自己。<br/>
-				Luv cup智能水杯不仅可以知道TA的饮水，还能给 <br/>
-				心爱的Ta发表情，一起Luv cup，理解爱意。
-			</p>
-			</div>
-		</div>
-
-		<div class="section section3">
-			<div id="third-page"></div>
-			<div id="info3">
-				<p>得力于4.0蓝牙低功耗，我们可以时刻链接水杯，用于接受TA给的<br/>
-				爱护，水杯也会根据自己的算法提醒喝水。当你饮水不足的时候，<br/>
-				它可以通过震动和表情来提醒你。帮助你建立自己的饮水习惯，健<br/>
-				康饮水。</p>
-			</div>
-		</div>
-
-		<div class="section section4">
-			<div id="fourth-page"></div>
-			<div id="info4">
-				<p></p>
-			</div>	
-		</div>
-
-		<div class="section section5">
-			<div id="fiveth-page"></div>
-			<div id="info5">
-				<p>Luv cup可以让你随心的联系TA，闲着没事调戏一下心爱的TA吧。APP做的不止记录饮水数据这<br/>
-				么简单，喝水一起喝才能变得更有趣。</p>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript" src="./js/jquery-3.0.0.min.js"></script>
-	<script type="text/javascript" src="./js/jquery.fullPage.min.js"></script>
-	<script type="text/javascript" src="./js/comon.js"></script>
-
+	<footer class="clearfix">
+		<p>联系邮箱：atme_talk@163.com</p>
+		<p>联系电话：18361228864</p>
+	</footer>
+	<script type="text/javascript" src='./js/initRem.js'></script>
+	<script type="text/javascript" src="./js/js.js"></script>
+	<script type="text/javascript" src="./js/canvas.js"></script>
 </body>
 </html>

@@ -1,0 +1,348 @@
+/* 基本默认的属性 */
+html {
+	color: #263238;
+}
+::selection{
+	background-color: #b3d4fc;
+	text-shadow: none;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+}
+/* 工具样式 */
+.canter-block {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+.pull-right {
+	float: right !important;
+}
+.pull-left {
+	float: left !important;
+}
+.text-right {
+	text-align: right !important;
+}
+.text-left {
+	text-align: left !important;
+} 
+.text-center {
+	text-align: center !important;
+}
+.hide {
+	display: none !important;
+}
+.show {
+	display: block !important;
+}
+.invisible {
+	visibility: hidden;
+}
+.text-hide {
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+	background-color: #transparent;
+	border: 0;
+}
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	display: table;
+}
+.clearfix {
+	clear: both;
+}
+body {
+	background-color: #212b30;
+}
+/* header */
+header {
+	width: 100%;
+	height: 1.25rem;
+	background-color: #263238;
+}
+header h3 {
+	float: left;
+	margin-left: 0.833333rem;
+	font-size: 0.5rem;
+	color: #151c1f;
+	line-height: 1.25rem;
+}
+header .pos {
+	float: right;
+	margin-right: 0.625rem;
+	line-height: 1.25rem;
+	vertical-align: middle;
+}
+header .switchBtn {
+	width: 2.083333rem;
+	height: 0.833333rem;
+	border: 0.020833rem solid rgba(0,0,0,.1);
+	box-shadow: 0.020833rem 0.020833rem 0.041667rem 0.020833rem rgba(0,0,0,.45) inset;
+	margin-top: 0.208333rem;
+	border-radius: 1.041667rem;
+	background-color: #232e33;
+}
+.switchBtn .btn {
+	width: 0.708333rem;
+	height:0.708333rem;
+	border-radius: 50%;
+	background-color: #263238;
+	border: 0.020833rem solid rgba(0,0,0,.2);
+	box-shadow: 0.020833rem 0.041667rem 0.041667rem 0 rgba(0,0,0,.5);
+	float: right;
+	margin: 0.041667rem;
+}
+/* container */
+/* container >>>> silder */
+.slider .slider-items {
+	position: relative;
+	width: 100%;
+	height: 5.416667rem;
+	margin-bottom: 0.333333rem;
+	overflow: hidden;
+}
+.slider .slider-items li {
+	height: 5.833333rem;
+	float: left;
+	background-color: #656565;
+}
+.slider .slider-items img {
+	width: 10.0rem;
+}
+.slider .show-tag {
+	width: 100%;
+	height: 0.833333rem;
+	background-color: #37474f;
+}
+.slider .show-tag p {
+	margin: 0;
+	line-height: 0.833333rem;
+	font-size: 0.416667rem;
+	float: left;
+}
+.slider .show-tag .console {
+	margin-left: 0.270833rem;
+	margin-right: 0.625rem;
+	color: #798e96;
+}
+.slider .show-tag .tag {	border-radius: 0.104167rem;
+	background-color: #232e33;
+	margin-left: 0.625rem;
+	margin: 0.104167rem 0.1875rem;
+}
+.slider .show-tag .tag span {
+	display: block;
+
+	padding: 0 0.1875rem;
+	line-height: 0.625rem;
+	color: #e5e7e8;
+}
+.img-container {
+	position: absolute;
+	width: 40.0rem;
+	overflow: hidden;
+}
+
+
+/* content */
+.year {
+	margin: 0.625rem 0;
+	text-align: center;
+	line-height: 1.25rem;
+	width: 100%;
+}
+.year p {
+	margin:0 50%;
+	width: 1.25rem;
+	height: 1.25rem;
+	border-radius: 50%;
+	background-color: #37474f;
+	font-size: 0.375rem;
+	color: #e5e7e8;
+	transform: translateX(-50%);
+
+}
+.content {
+	position: relative;
+}
+.time-line {
+	position: absolute;
+	width: 0.083333rem;
+	height: 20.833333rem;
+	left: 50%;
+	margin-left: -0.041667rem;
+	background-color: #37474f;
+}
+.event-right {
+	overflow: hidden;
+	margin: 0.416667rem 0;
+}
+.event-left {
+	overflow: hidden;
+	margin: 0.416667rem 0;
+}
+.small-cri {
+	position: absolute;
+	width: 0.166667rem;
+	height: 0.166667rem;
+	border: 0.166667rem solid #37474f;
+	background-color: #798e96;
+	border-radius: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-top: 0.416667rem;
+}
+.event-info {
+	float: right;
+	margin-right: 0.625rem;
+	margin-top: 0.208333rem;
+}
+
+.time {
+	font-size: 0.375rem;
+	color: #798e96;
+}
+.time-left {
+	margin: 0;
+	margin-left: 2.8125rem;
+	margin-top: 0.458333rem;
+	float: left;
+}
+
+.triangle-left {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-top: 0.208333rem solid transparent;
+	border-bottom: 0.208333rem solid transparent;
+	border-right: 0.3125rem solid #37474f;
+	margin-left: -0.5rem;
+}
+.triangle-right {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-top: 0.208333rem solid transparent;
+	border-bottom: 0.208333rem solid transparent;
+	border-left: 0.3125rem solid #37474f;
+	margin-left: 2.6875rem;
+	
+}
+ .event-container {
+	padding: 0.208333rem;
+	background-color: #37474f;
+	border-radius: 0.145833rem;
+	min-width: 2.541667rem;
+	min-height: 0.625rem;
+ }
+
+.event-container p {
+	margin: 0;
+	line-height: 0.375rem;
+	font-size: 0.25rem;
+	color: #a3aaae;
+}
+.time-right {
+	float: right;
+	margin-left: 0;
+	margin-right: 2.791667rem;
+}
+.event-left .event-info {
+	float: left;
+	margin-left: 0.666667rem;
+}
+
+/* info */
+.info{
+	width: 90%;
+	height: 6.25rem;
+	margin: 0 auto;
+	border-radius: 0.104167rem;
+	background-color: #37474f;
+
+}
+
+/* run */
+.run {
+	width: 90%;
+	height: 1.666667rem;
+	margin: 0.541667rem auto;
+	background-color: #37474f;
+	border-radius: 0.104167rem;
+	line-height: 1.666667rem;
+}
+.run p {
+	float: left;
+	margin: 0;
+	margin-left: 1.3125rem;
+	font-size: 0.625rem;
+	color: #c3c2c2;
+}
+.run-btn {
+	position: relative;
+	float: right;
+	top: 0.270833rem;
+	right: 0.333333rem;
+
+	width: 2.8125rem;
+	height: 1.125rem;
+	border-radius: 0.104167rem;
+
+	background-color: #546e7a;
+	color: #fffefe;
+	font-size: 0.5rem;
+	text-align: center;
+	line-height: 1.125rem;
+}
+
+/* log */
+.log {
+	width: 90%;
+	height: 5.625rem;
+	margin: 0 auto 1.041667rem;
+	background-color: #29353b;
+	border-radius: 0.104167rem;
+}
+.log p {
+	width: 8.333333rem;
+	font-size: 0.375rem;
+	color: #a3aaae;
+	padding-top: 1rem;
+	margin: 0 auto;
+	line-height: 0.625rem;
+}
+/* footer */
+footer {
+	width: 100%;
+	height: 1.666667rem;
+	text-align: center;
+	background-color: #37474f;
+}
+footer p {
+	font-size: 0.291667rem;
+	font-weight: bold;
+	color: #cbcbcb;
+}
+
+
+/* backgroud canvas */
+ #cas {
+	position: absolute;
+	width: 100%;
+	height: 41.666667rem;
+	left: 0;
+	top: 0;
+	margin: 0;
+	z-index: -100;
+	background-color: #212b30;
+} 
