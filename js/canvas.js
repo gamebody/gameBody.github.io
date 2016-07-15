@@ -4,8 +4,9 @@
     var stats = new Stats();
     stats.setMode(0);
     stats.domElement.style.position = 'absolute';
-    stats.domElement.style.right = '-500px';
+    stats.domElement.style.right = '0px';
     stats.domElement.style.top = '0px';
+    stats.domElement.style.display = 'none';
     document.body.appendChild( stats.domElement );
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -244,8 +245,9 @@
     }
 window.onscroll = function () {
     var t = document.documentElement.scrollTop || document.body.scrollTop;
-    if (t == 1000) {
+    if (t >= 1000) {
         useImage();
+        window.onscroll = null;
     }
     
 }
