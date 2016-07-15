@@ -1,106 +1,251 @@
-  !function() {
-  	var _height = document.body.scrollHeigh;
-    var canvas = document.getElementById('cas');
+    var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext('2d');
-    var rgb = '130';      // 线条颜色值
-    var extendDis = 5;   // 可超出的画布边界
-    var lineDis = 75;    // 连线距离
-    lineDis *= lineDis;
-    canvas.width = 800;
-    var RAF = (function() {
-      return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
-            window.setTimeout(callback, 1000 / 60);
-          };
+    var img;
+    var stats = new Stats();
+    stats.setMode(0);
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.right = '-500px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild( stats.domElement );
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var mouseX = null, mouseY = null;
+    var mouseRadius = 50;
+
+    var RAF = (function () {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+                    window.setTimeout(callback, 1000 / 60);
+                };
     })();
-    // 鼠标活动时，获取鼠标坐标
-    var warea = {x: null, y: null};
-    window.onmousemove = function(e) {
-      e = e || window.event;
-      warea.x = e.clientX - canvas.offsetLeft;
-      warea.y = e.clientY - canvas.offsetTop;
-    };
-    window.onmouseout = function(e) {
-      warea.x = null;
-      warea.y = null;
-    };
-    // 添加粒子
-    // x，y为粒子坐标，xa, ya为粒子xy轴加速度，max为连线的最大距离
-    var dots = [];
-    for (var i = 0; i < 75; i++) {
-      var x = Math.random() * (canvas.width + 2 * extendDis) - extendDis;
-      var y = Math.random() * (canvas.height + 2 * extendDis) - extendDis;
-      var xa = (Math.random() * 1.5 - 1) / 1.5;
-      var ya = (Math.random() * 1.5 - 1) / 1.5;
-      dots.push({
-        x: x,
-        y: y,
-        xa: xa,
-        ya: ya
-      })
-    }
-    // 延迟100秒开始执行动画，如果立即执行有时位置计算会出错
-    setTimeout(function() {
-      animate();
-    }, 100);
-    // 每一帧循环的逻辑
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      bubDrawLine([warea].concat(dots));
-      RAF(animate);
-    }
-    /**
-     * 逐个对比连线
-     * @param ndots
-     */
-    function bubDrawLine(ndots) {
-      var ndot;
-      dots.forEach(function(dot) {
-        move(dot);
-        // 循环比对粒子间的距离
-        for (var i = 0; i < ndots.length; i++) {
-          ndot = ndots[i];
-          if (dot === ndot || ndot.x === null || ndot.y === null) continue;
-          var xc = dot.x - ndot.x;
-          var yc = dot.y - ndot.y;
-          // 如果x轴距离或y轴距离大于max,则不计算粒子距离
-          if (xc > ndot.max || yc > lineDis) continue;
-          // 两个粒子之间的距离
-          var dis = xc * xc + yc * yc;
-          // 如果粒子距离超过max,则不做处理
-          if (dis > lineDis) continue;
-          // 距离比
-          var ratio;
-          // 如果是鼠标，则让粒子向鼠标的位置移动
-          if (ndot === warea && dis < 20000) {
-            dot.x -= xc * 0.01;
-            dot.y -= yc * 0.01;
-          }
-          // 计算距离比
-          ratio = (lineDis - dis) / lineDis;
-          // 粒子间连线
-          ctx.beginPath();
-          ctx.lineWidth = ratio / 2;
-          ctx.strokeStyle = 'rgba(' + rgb + ', ' + rgb + ', ' + rgb + ', 1';
-          ctx.moveTo(dot.x, dot.y);
-          ctx.lineTo(ndot.x, ndot.y);
-          ctx.stroke();
+    Array.prototype.forEach = function (callback) {
+        for (var i = 0; i < this.length; i++) {
+            callback.call((typeof this[i] === "object") ? this[i] : window, i, this[i]);
         }
-        // 将已经计算过的粒子从数组中删除
-        ndots.splice(ndots.indexOf(dot), 1);
-      });
+    };
+    window.onmousemove = function (e) {
+        if (e.target.tagName == "CANVAS") {
+            mouseX = e.clientX - e.target.getBoundingClientRect().left;
+            mouseY = e.clientY - e.target.getBoundingClientRect().top;
+        } else {
+            mouseX = null;
+            mouseY = null;
+        }
+    };
+    var particleArray = [];
+    var animateArray = [];
+    var particleSize_x = 1;
+    var particleSize_y = 2;
+    var canvasHandle = {
+        init: function () {
+            this._reset();
+            this._initImageData();
+            this._execAnimate();
+        },
+        _reset: function () {
+            particleArray.length = 0;
+            animateArray.length = 0;
+            this.ite = 100;
+            this.start = 0;
+            this.end = this.start + this.ite;
+        },
+        _initImageData: function () {
+            this.imgx = (canvas.width - img.width) / 2;
+            this.imgy = (canvas.height - img.height) / 2;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, this.imgx, this.imgy, img.width, img.height);
+            var imgData = ctx.getImageData(this.imgx, this.imgy, img.width, img.height);
+
+            for (var x = 0; x < img.width; x += particleSize_x) {
+                for (var y = 0; y < img.height; y += particleSize_y) {
+                    var i = (y * imgData.width + x) * 4;
+                    if (imgData.data[i + 3] >= 125) {
+                        var color = "rgba(" + imgData.data[i] + "," + imgData.data[i + 1] + "," + imgData.data[i + 2] + "," + imgData.data[i + 3] + ")";
+                        var x_random = x + Math.random() * 20,
+                                vx = -Math.random() * 200 + 400,
+                                y_random = img.height/2 - Math.random() * 40 + 20,
+                                vy;
+                        if (y_random < this.imgy + img.height / 2) {
+                            vy = Math.random() * 300;
+                        } else {
+                            vy = -Math.random() * 300;
+                        }
+                        particleArray.push(
+                                new Particle(
+                                        x_random + this.imgx,
+                                        y_random + this.imgy,
+                                        x + this.imgx,
+                                        y + this.imgy,
+                                        vx,
+                                        vy,
+                                        color
+                                )
+                        );
+                        particleArray[particleArray.length - 1].drawSelf();
+                    }
+                }
+            }
+        },
+        _execAnimate: function () {
+            var that = this;
+            particleArray.sort(function (a, b) {
+                return a.ex - b.ex;
+            });
+            if (!this.isInit) {
+                this.isInit = true;
+                animate(function (tickTime) {
+                    if (animateArray.length < particleArray.length) {
+                        if (that.end > (particleArray.length - 1)) {
+                            that.end = (particleArray.length - 1)
+                        }
+                        animateArray = animateArray.concat(particleArray.slice(that.start, that.end))
+                        that.start += that.ite;
+                        that.end += that.ite;
+                    }
+                    animateArray.forEach(function (i) {
+                        this.update(tickTime);
+                    })
+                })
+            }
+        }
     }
-    /**
-     * 粒子移动
-     * @param dot
-     */
-    function move(dot) {
-      dot.x += dot.xa;
-      dot.y += dot.ya;
-      // 遇到边界将加速度反向
-      dot.xa *= (dot.x > (canvas.width + extendDis) || dot.x < -extendDis) ? -1 : 1;
-      dot.ya *= (dot.y > (canvas.height + extendDis) || dot.y < -extendDis) ? -1 : 1;
-      // 绘制点
-      ctx.fillStyle = 'rgba(' + rgb + ', ' + rgb + ', ' + rgb + ', 1';
-      ctx.fillRect(dot.x - 0.5, dot.y - 0.5, 1, 1);
+    var tickTime = 16;
+    function animate(tick) {
+        if (typeof tick == "function") {
+            var tickTime = 16;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            tick(tickTime);
+            stats.update();
+            RAF(function () {
+                animate(tick)
+            })
+        }
     }
-  }();
+    function Particle(x, y, ex, ey, vx, vy, color) {
+        this.x = x;
+        this.y = y;
+        this.ex = ex;
+        this.ey = ey;
+        this.vx = vx;
+        this.vy = vy;
+        this.a = 1500;
+        this.color = color;
+        this.width = particleSize_x;
+        this.height = particleSize_y;
+        this.stop = false;
+        this.static = false;
+        this.maxCheckTimes = 10;
+        this.checkLength = 5;
+        this.checkTimes = 0;
+    }
+    var oldColor = "";
+    Particle.prototype = {
+        constructor: Particle,
+        drawSelf: function () {
+            if (oldColor != this.color) {
+                ctx.fillStyle = this.color;
+                oldColor = this.color
+            }
+            ctx.fillRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
+        },
+        move:function(tickTime){
+            if (this.stop) {
+                this.x = this.ex;
+                this.y = this.ey;
+            } else {
+                tickTime = tickTime / 1000;
+                var cx = this.ex - this.x;
+                var cy = this.ey - this.y;
+                var angle = Math.atan(cy / cx);
+                var ax = Math.abs(this.a * Math.cos(angle));
+                ax = this.x > this.ex ? -ax : ax
+                var ay = Math.abs(this.a * Math.sin(angle));
+                ay = this.y > this.ey ? -ay : ay;
+                this.vx += ax * tickTime;
+                this.vy += ay * tickTime;
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+                this.x += this.vx * tickTime;
+                this.y += this.vy * tickTime;
+                if (Math.abs(this.x - this.ex) <= this.checkLength && Math.abs(this.y - this.ey) <= this.checkLength) {
+                    this.checkTimes++;
+                    if (this.checkTimes >= this.maxCheckTimes) {
+                        this.stop = true;
+                    }
+                } else {
+                    this.checkTimes = 0
+                }
+            }
+        },
+        update: function (tickTime) {
+            this.move(tickTime);
+            this.drawSelf();
+            this._checkMouse();
+        },
+        _checkMouse: function () {
+            var that = this;
+            if (!mouseX) {
+                goback();
+                return;
+            }
+            var distance = Math.sqrt(Math.pow(mouseX - this.x, 2) + Math.pow(mouseY - this.y, 2));
+            var angle = Math.atan((mouseY - this.y) / (mouseX - this.x));
+            if (distance < mouseRadius) {
+                this.stop = false;
+                this.checkTimes = 0;
+                if (!this.recordX) {
+                    this.recordX = this.ex;
+                    this.recordY = this.ey;
+                }
+                this.a = 2000 + 1000 * (1-distance/mouseRadius);
+                var xc = Math.abs((mouseRadius - distance) * Math.cos(angle));
+                var yc = Math.abs((mouseRadius - distance) * Math.sin(angle));
+                xc = mouseX > this.x ? -xc : xc;
+                yc = mouseY > this.y ? -yc : yc;
+                this.ex = this.x + xc;
+                this.ey = this.y + yc;
+            } else {
+                goback();
+            }
+            function goback(){
+                if (that.recordX) {
+                    that.stop = false;
+                    that.checkTimes = 0;
+                    that.a = 1500;
+                    that.ex = that.recordX;
+                    that.ey = that.recordY;
+                    that.recordX = null;
+                    that.recordY = null;
+                }
+            }
+        }
+    };
+    //use image
+    function useImage() {
+        img = document.getElementById("lizi");
+        if (img.complete) {
+            canvasHandle.init();
+        } else {
+            img.onload = function () {
+                canvasHandle.init();
+            }
+        }
+    }
+    //use text
+    function useText(text) {
+        img = document.createElement('canvas');
+        img.width = 600;
+        img.height = 180;
+        var imgctx = img.getContext("2d");
+        imgctx.textAlign = "center";
+        imgctx.textBaseline = "middle";
+        imgctx.font = "100px 微软雅黑";
+        imgctx.fillText(text || '猩猩助手', img.width / 2, img.height / 2);
+        canvasHandle.init();
+    }
+window.onscroll = function () {
+    var t = document.documentElement.scrollTop || document.body.scrollTop;
+    if (t == 1000) {
+        useImage();
+    }
+    
+}

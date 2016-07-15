@@ -51,31 +51,10 @@ run.addEventListener('click', function(){
 	run.style.color = '#536974';
 })
 
-function Circle (config) {
-	this.posX = config.x;
-	this.posY = config.y;
-	this.width = config.width;
-	this.limitX = (document.clientWidth * 0.9) - this.width/2;
-	this.content = config.content;
-	this.bgc = config.backgroundColor;
-}
-Circle.prototype = {
-	init: function(){
-		var oidv = document.createElement('div');
-		odiv.style.width = this.width + 'px';
-		odiv.style.height = this.height + 'px';
-		if(!this.posCenter) {
-			this.posCenter = '';
-		}
-		odiv.style.backgroundColor = this.bgc;
-		odiv.innerHTML = this.content;
-		odiv.style.fontSize = '14px';
-		odiv.style.color = '#fdfdfd';
-	}
-}
+
 
 /* js轮播图 */
-var oslider = document.getElementById('slider_img');
+/*var oslider = document.getElementById('slider_img');
 var loop = {
 	index : 1,
 	init: function(ele) {
@@ -100,7 +79,17 @@ var loop = {
 	}
 }
 
-loop.init(oslider);
+loop.init(oslider);*/
+
+$(function(){
+	$("#slider_img").owlCarousel({
+		items: 1,
+		loop: true,
+		autoPlay: 2000,
+		stopOnHover: true,
+		responsive: false
+	});
+})
 
 
 
